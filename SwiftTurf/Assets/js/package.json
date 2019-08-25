@@ -6,10 +6,13 @@
   "author": "Adolfo Martinelli",
   "license": "MIT",
   "dependencies": {
-    "@turf/buffer": "5.1.5",
     "@turf/boolean-contains": "5.1.5",
+    "@turf/buffer": "5.1.5",
     "@turf/destination": "5.1.5",
+    "@turf/distance": "5.1.5",
     "@turf/kinks": "5.1.5",
-    "@turf/line-intersect": "5.1.5"
+    "@turf/line-intersect": "5.1.5",
+    "@turf/nearest-point-on-line": "5.1.5",
+    "@turf/point-to-line-distance": "5.1.5"
   }
 }

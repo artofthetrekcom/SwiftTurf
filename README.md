@@ -21,6 +21,13 @@ it, simply add the following line to your Podfile:
 pod "SwiftTurf"
 ```
 
+### Bundle JS assets to `dist/bundle.js` 
+- Setup [nodejs](https://nodejs.org/en/) (use the LTS version)
+- Install [Browserify](http://browserify.org/#install) globally - `npm install -g browserify`
+- Open terminal and change directory `cd Assets/js`
+- Run `browserify lib.js -o dist/bundle.js`     
+    * If any issue occurs at brows try removing `node_modules` directory and run the command again 
+
 ### Carthage
 
 ```
