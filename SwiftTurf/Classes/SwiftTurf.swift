@@ -125,6 +125,39 @@ final public class SwiftTurf {
 			return false
 		}
 	}
+  
+  public static func nearestPointOnLine(line: LineString, point: Point) -> Point {
+    let js = sharedInstance.context?.objectForKeyedSubscript("nearestPointOnLine")!
+    let args: [AnyObject] = [line.geoJSONRepresentation() as AnyObject, point.geoJSONRepresentation() as AnyObject]
+    
+    guard let pointOnLineDictionary = js?.call(withArguments: args)?.toDictionary(),
+      let pointOnLine = Point(dictionary: pointOnLineDictionary)
+      else {
+        assertionFailure()
+        return point
+    }
+    return pointOnLine
+  }
+  
+  public static func pointToLineDistance(point: Point, line: LineString, units: Units = .Meters) -> Double {
+    let js = sharedInstance.context?.objectForKeyedSubscript("pointToLineDistance")!
+    let args: [AnyObject] = [
+      point.geoJSONRepresentation() as AnyObject,
+      line.geoJSONRepresentation() as AnyObject,
+      ["units": units.rawValue as AnyObject] as AnyObject,
+    ]
+    
+    guard let distance = js?.call(withArguments: args)?.toDouble()
+      else {
+        assertionFailure()
+        return .greatestFiniteMagnitude
+    }
+    return distance
+  }
+   
+  // NOTE: we have `distance` imported in js as well but dont really need it so havent implemented it in Swift
+  
+  // MARK: Commented functions below are from original SwiftTurf repo and were also commented there, not sure whats up with that.
 
 //	public static func union(feature: FeatureCollection) -> Polygon? {
 //		
